@@ -55,4 +55,11 @@ public class StockService {
             throw new StockNotFoundException("Stock details not found Exception for the company");
         }
     }
+
+    public List<Stock> getAllStocks(String companyCode, String startDate, String endDate){
+        Instant start = LocalDate.parse(startDate, dateTimeFormatter).atStartOfDay(ZoneId.of("+0")).toInstant();
+        Instant end = LocalDate.parse(endDate, dateTimeFormatter).atStartOfDay(ZoneId.of("+0")).toInstant();
+        return stockInfoRepository.retrieveStockDetails(companyCode, start, end);
+
+    }
 }

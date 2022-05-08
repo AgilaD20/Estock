@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1.0/market/stock")
 public class StockController {
@@ -27,5 +29,14 @@ public class StockController {
         return new ResponseEntity<>(stockDetails,HttpStatus.OK);
 
     }
+
+    @GetMapping("info/{companycode}/{startdate}/{enddate}")
+    public ResponseEntity<List<Stock>> getAllStocks(@PathVariable("companycode") String companyCode, @PathVariable("startdate") String startDate, @PathVariable("enddate") String endDate){
+        List<Stock> stocks = stockService.getAllStocks(companyCode,startDate,endDate);
+        return new ResponseEntity<>(stocks,HttpStatus.OK);
+
+    }
+
+
 
 }
