@@ -48,7 +48,7 @@ public class StockService {
             Double average = stockPriceList.stream().collect(Collectors.averagingDouble(d -> d));
             Double minValue = min.orElseGet(()->0.0);
             Double maxValue = max.orElseGet(()->0.0);
-            StockDetails stockDetails = new StockDetails(companyCode, start, end,latestStock.getStockPrice(), minValue, maxValue, average);
+            StockDetails stockDetails = new StockDetails(companyCode, start, end,latestStock.getStockPrice(), minValue, maxValue, Math.round(average * 100D) / 100D);
             return stockDetails;
         }
         else{

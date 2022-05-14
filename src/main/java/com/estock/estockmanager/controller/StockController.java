@@ -17,11 +17,6 @@ public class StockController {
     @Autowired
     private StockService stockService;
 
-    @PostMapping("/add/{companycode}")
-    public ResponseEntity<Stock> addStock(@RequestParam Double stock, @PathVariable("companycode") String companyCode){
-        Stock addedStock = stockService.addstock(stock,companyCode);
-        return new ResponseEntity<>(addedStock, HttpStatus.OK);
-    }
 
     @GetMapping("get/{companycode}/{startdate}/{enddate}")
     public ResponseEntity<StockDetails> getStockDetails(@PathVariable("companycode") String companyCode, @PathVariable("startdate") String startDate, @PathVariable("enddate") String endDate){
